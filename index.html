@@ -81,7 +81,7 @@
                     </div>
                     <div class="form-group">
                         <label for="reg-calories" id="lbl-reg-calories">Daily Calorie Goal</label>
-                        <input type="number" id="reg-calories" value="2000" required min="500">
+                        <input type="number" id="reg-calories" step="any" value="2000" required min="500">
                     </div>
                     <button type="submit" class="btn btn-primary full-width" id="btn-signup">Sign Up</button>
                 </form>
@@ -242,21 +242,21 @@
                     <div class="form-row">
                         <div class="form-group full-width" style="flex:1">
                             <label for="meal-calories" id="lbl-meal-kcal">Calories (kcal)</label>
-                            <input type="number" id="meal-calories" required min="0" placeholder="0">
+                            <input type="number" id="meal-calories" step="any" required min="0" placeholder="0">
                         </div>
                     </div>
                     <div class="form-row macros-row">
                         <div class="form-group">
                             <label for="meal-protein" id="lbl-meal-prot">Protein (g)</label>
-                            <input type="number" id="meal-protein" required min="0" placeholder="0">
+                            <input type="number" id="meal-protein" step="any" required min="0" placeholder="0">
                         </div>
                         <div class="form-group">
                             <label for="meal-carbs" id="lbl-meal-carb">Carbs (g)</label>
-                            <input type="number" id="meal-carbs" required min="0" placeholder="0">
+                            <input type="number" id="meal-carbs" step="any" required min="0" placeholder="0">
                         </div>
                         <div class="form-group">
                             <label for="meal-fat" id="lbl-meal-fat">Fat (g)</label>
-                            <input type="number" id="meal-fat" required min="0" placeholder="0">
+                            <input type="number" id="meal-fat" step="any" required min="0" placeholder="0">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary full-width" id="btn-save-meal">Save Meal</button>
@@ -274,20 +274,20 @@
                 <form id="settings-form">
                     <div class="form-group">
                         <label for="goal-calories" id="lbl-goal-kcal">Daily Calories (kcal)</label>
-                        <input type="number" id="goal-calories" required min="500">
+                        <input type="number" id="goal-calories" step="any" required min="500">
                     </div>
                     <div class="form-row macros-row">
                         <div class="form-group">
                             <label for="goal-protein" id="lbl-goal-prot">Protein (g)</label>
-                            <input type="number" id="goal-protein" required min="0">
+                            <input type="number" id="goal-protein" step="any" required min="0">
                         </div>
                         <div class="form-group">
                             <label for="goal-carbs" id="lbl-goal-carb">Carbs (g)</label>
-                            <input type="number" id="goal-carbs" required min="0">
+                            <input type="number" id="goal-carbs" step="any" required min="0">
                         </div>
                         <div class="form-group">
                             <label for="goal-fat" id="lbl-goal-fat">Fat (g)</label>
-                            <input type="number" id="goal-fat" required min="0">
+                            <input type="number" id="goal-fat" step="any" required min="0">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary full-width" id="btn-save-goals">Save Goals</button>
@@ -344,19 +344,19 @@
                                 <div class="form-row macros-row" style="margin-top: 0.5rem;">
                                     <div class="form-group">
                                         <label for="ai-total-kcal" style="font-size: 0.75rem;">Calories</label>
-                                        <input type="number" id="ai-total-kcal" required min="0">
+                                        <input type="number" id="ai-total-kcal" step="any" required min="0">
                                     </div>
                                     <div class="form-group">
                                         <label for="ai-total-protein" style="font-size: 0.75rem;">Protein</label>
-                                        <input type="number" id="ai-total-protein" required min="0">
+                                        <input type="number" id="ai-total-protein" step="any" required min="0">
                                     </div>
                                     <div class="form-group">
                                         <label for="ai-total-carbs" style="font-size: 0.75rem;">Carbs</label>
-                                        <input type="number" id="ai-total-carbs" required min="0">
+                                        <input type="number" id="ai-total-carbs" step="any" required min="0">
                                     </div>
                                     <div class="form-group">
                                         <label for="ai-total-fat" style="font-size: 0.75rem;">Fat</label>
-                                        <input type="number" id="ai-total-fat" required min="0">
+                                        <input type="number" id="ai-total-fat" step="any" required min="0">
                                     </div>
                                 </div>
                             </div>

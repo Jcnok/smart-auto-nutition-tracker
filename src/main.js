@@ -488,7 +488,7 @@ function renderDashboard() {
 }
 
 function renderMeals() {
-    const meals = getMeals();
+    const meals = getTodayMeals();
     els.mealsContainer.innerHTML = '';
 
     if (meals.length === 0) {
