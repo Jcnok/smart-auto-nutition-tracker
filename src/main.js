@@ -448,7 +448,7 @@ function getCategoryByTime(hour) {
 // Rendering Logic
 function renderAll() {
     renderDashboard();
-    renderMealsList();
+    renderMeals();
     renderChart();
 }
 

@@ -107,11 +107,12 @@ export const addMeal = (meal) => {
     meal.id = Date.now().toString();
     meal.date = meal.date || new Date().toISOString().split('T')[0];
 
-    // Parse numeric fields safely
-    meal.calories = Number(meal.calories) || 0;
-    meal.protein = Number(meal.protein) || 0;
-    meal.carbs = Number(meal.carbs) || 0;
-    meal.fat = Number(meal.fat) || 0;
+    // Parse numeric fields safely, handling commas
+    const parseNumber = (val) => Number(String(val).replace(',', '.')) || 0;
+    meal.calories = parseNumber(meal.calories);
+    meal.protein = parseNumber(meal.protein);
+    meal.carbs = parseNumber(meal.carbs);
+    meal.fat = parseNumber(meal.fat);
 
     userData.meals.push(meal);
     userData.meals.sort((a, b) => a.time.localeCompare(b.time));
