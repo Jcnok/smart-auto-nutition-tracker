@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="public/cover.png" alt="AutoNutry Cover Image" width="100%" style="border-radius: 12px; box-shadow: 0px 4px 12px rgba(0,0,0,0.1);" />
+  <img src="public/cover.gif" alt="AutoNutry Cover Image" width="100%" style="border-radius: 12px; box-shadow: 0px 4px 12px rgba(0,0,0,0.1);" />
 
   # 🥗 AutoNutry 
 

@@ -605,6 +605,16 @@ select:focus {
   box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
 }
 
+/* Optimize AI inputs for small screens */
+.macros-row {
+  gap: 0.5rem;
+}
+
+.macros-row input {
+  padding: 0.5rem 0.25rem;
+  text-align: center;
+}
+
 .chart-container {
   position: relative;
   height: 250px;
