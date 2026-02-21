@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AutoNutry</title>
+    <!-- Google Fonts: Inter and Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Toast Notification Container -->
+        <div id="toast-container" class="toast-container"></div>
+
+        <header class="navbar">
+            <div class="logo">
+                <i data-lucide="leaf"></i>
+                <span id="nav-app-name">AutoNutry</span>
+            </div>
+            <div class="actions">
+                <select id="lang-selector" class="lang-select">
+                    <option value="en">EN</option>
+                    <option value="pt">PT</option>
+                </select>
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
+                    <i data-lucide="sun"></i>
+                </button>
+                <button id="settings-btn" class="icon-btn" aria-label="Settings" style="display:none;">
+                    <i data-lucide="user"></i>
+                </button>
+                <button id="logout-btn" class="icon-btn" aria-label="Logout" style="display:none;">
+                    <i data-lucide="log-out"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- AUTHENTICATION VIEW -->
+        <section id="auth-view" class="container auth-container">
+            <div class="card auth-card" id="login-card">
+                <h2 id="login-title">Welcome to AutoNutry</h2>
+                <p class="auth-subtitle" id="login-subtitle">Log in to track your meals intelligently.</p>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email" id="lbl-login-email">Email</label>
+                        <input type="email" id="login-email" required placeholder="name@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password" id="lbl-login-password">Password</label>
+                        <input type="password" id="login-password" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width" id="btn-login">Log In</button>
+                </form>
+                <p class="auth-switch"><span id="txt-no-account">Don't have an account?</span> <button
+                        id="show-register" class="text-btn">Sign
+                        up</button></p>
+            </div>
+
+            <div class="card auth-card" id="register-card" style="display:none;">
+                <h2 id="register-title">Join AutoNutry</h2>
+                <p class="auth-subtitle" id="register-subtitle">Create an account to start tracking.</p>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="reg-name" id="lbl-reg-name">Name</label>
+                        <input type="text" id="reg-name" required placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email" id="lbl-reg-email">Email</label>
+                        <input type="email" id="reg-email" required placeholder="name@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password" id="lbl-reg-password">Password</label>
+                        <input type="password" id="reg-password" required minlength="6"
+                            placeholder="At least 6 characters">
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-calories" id="lbl-reg-calories">Daily Calorie Goal</label>
+                        <input type="number" id="reg-calories" value="2000" required min="500">
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width" id="btn-signup">Sign Up</button>
+                </form>
+                <p class="auth-switch"><span id="txt-have-account">Already have an account?</span> <button
+                        id="show-login" class="text-btn">Log in</button>
+                </p>
+            </div>
+        </section>
+
+        <!-- DASHBOARD VIEW -->
+        <main id="dashboard-view" class="container" style="display:none;">
+            <!-- Dashboard Section -->
+            <section class="dashboard card">
+                <div class="dashboard-header">
+                    <h2 id="dash-title">Daily Summary</h2>
+                    <span class="date-display" id="current-date">Today</span>
+                </div>
+
+                <div class="circular-progress-container">
+                    <div class="calorie-ring">
+                        <svg viewBox="0 0 36 36" class="circular-chart">
+                            <path class="circle-bg" d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path class="circle" id="calorie-progress-ring" stroke-dasharray="0, 100" d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <text x="18" y="16" class="percentage" id="kcal-consumed">0</text>
+                            <text x="18" y="24" class="label">/ <span id="kcal-goal">2000</span> kcal</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="macros-container">
+                    <div class="macro-item">
+                        <div class="macro-header">
+                            <span class="macro-name">Protein</span>
+                            <span class="macro-values"><span id="protein-consumed">0</span> / <span
+                                    id="protein-goal">150</span>g</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar protein" id="protein-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="macro-item">
+                        <div class="macro-header">
+                            <span class="macro-name">Carbs</span>
+                            <span class="macro-values"><span id="carbs-consumed">0</span> / <span
+                                    id="carbs-goal">200</span>g</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar carbs" id="carbs-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="macro-item">
+                        <div class="macro-header">
+                            <span class="macro-name">Fat</span>
+                            <span class="macro-values"><span id="fat-consumed">0</span> / <span
+                                    id="fat-goal">65</span>g</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar fat" id="fat-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Actions -->
+            <div class="primary-actions ai-actions">
+                <button id="add-meal-btn" class="btn btn-secondary">
+                    <i data-lucide="plus"></i>
+                    Manual
+                </button>
+                <div class="ai-button-group">
+                    <button id="camera-btn" class="btn btn-primary">
+                        <i data-lucide="camera"></i>
+                        Camera
+                    </button>
+                    <button id="gallery-btn" class="btn btn-primary">
+                        <i data-lucide="image"></i>
+                        Gallery
+                    </button>
+                </div>
+                <input type="file" id="image-input" accept="image/*" style="display: none;">
+            </div>
+
+            <!-- AI Text Analysis -->
+            <section class="ai-text-input card">
+                <div class="form-group no-margin">
+                    <div class="input-with-button">
+                        <input type="text" id="ai-description"
+                            placeholder="Or describe your meal: 'A bowl of oats with blueberries and almonds'">
+                        <button id="ai-text-btn" class="btn btn-accent icon-only" title="Analyze with AI">
+                            <i data-lucide="sparkles"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Meals List -->
+            <section class="meals-list">
+                <h3>Today's Meals</h3>
+                <div id="meals-container" class="meals-container">
+                    <!-- dynamically injected cards -->
+                    <div class="empty-state">
+                        <i data-lucide="utensils-crossed"></i>
+                        <p>No meals added today.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History Chart -->
+            <section class="history card">
+                <div class="history-header">
+                    <h3 id="history-title">7-Day History</h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="historyChart"></canvas>
+                </div>
+            </section>
+
+            <footer class="app-footer">
+                <p id="footer-dev">Developed with ❤️ by <strong>Julio Okuda</strong></p>
+                <p class="footer-meta" id="footer-pow">Powered by <strong>Vibecoding</strong> & <strong>Gemini</strong>
+                </p>
+            </footer>
+        </main>
+
+        <!-- Add Meal Modal -->
+        <dialog id="meal-modal" class="modal">
+            <div class="modal-content card">
+                <header class="modal-header">
+                    <h2 id="modal-add-title">Add Meal</h2>
+                    <button id="close-meal-modal" class="icon-btn"><i data-lucide="x"></i></button>
+                </header>
+                <form id="meal-form">
+                    <div class="form-group">
+                        <label for="meal-name" id="lbl-meal-name">Meal Name</label>
+                        <input type="text" id="meal-name" required placeholder="e.g. Grilled Chicken Salad">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="meal-category" id="lbl-meal-cat">Category</label>
+                            <select id="meal-category" required>
+                                <option value="breakfast">Breakfast</option>
+                                <option value="lunch">Lunch</option>
+                                <option value="dinner">Dinner</option>
+                                <option value="snack">Snack</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="meal-time" id="lbl-meal-time">Time</label>
+                            <input type="time" id="meal-time" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group full-width" style="flex:1">
+                            <label for="meal-calories" id="lbl-meal-kcal">Calories (kcal)</label>
+                            <input type="number" id="meal-calories" required min="0" placeholder="0">
+                        </div>
+                    </div>
+                    <div class="form-row macros-row">
+                        <div class="form-group">
+                            <label for="meal-protein" id="lbl-meal-prot">Protein (g)</label>
+                            <input type="number" id="meal-protein" required min="0" placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="meal-carbs" id="lbl-meal-carb">Carbs (g)</label>
+                            <input type="number" id="meal-carbs" required min="0" placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="meal-fat" id="lbl-meal-fat">Fat (g)</label>
+                            <input type="number" id="meal-fat" required min="0" placeholder="0">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width" id="btn-save-meal">Save Meal</button>
+                </form>
+            </div>
+        </dialog>
+
+        <!-- Settings Modal (Goals) -->
+        <dialog id="settings-modal" class="modal">
+            <div class="modal-content card">
+                <header class="modal-header">
+                    <h2 id="modal-goals-title">Daily Goals</h2>
+                    <button id="close-settings-modal" class="icon-btn"><i data-lucide="x"></i></button>
+                </header>
+                <form id="settings-form">
+                    <div class="form-group">
+                        <label for="goal-calories" id="lbl-goal-kcal">Daily Calories (kcal)</label>
+                        <input type="number" id="goal-calories" required min="500">
+                    </div>
+                    <div class="form-row macros-row">
+                        <div class="form-group">
+                            <label for="goal-protein" id="lbl-goal-prot">Protein (g)</label>
+                            <input type="number" id="goal-protein" required min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="goal-carbs" id="lbl-goal-carb">Carbs (g)</label>
+                            <input type="number" id="goal-carbs" required min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="goal-fat" id="lbl-goal-fat">Fat (g)</label>
+                            <input type="number" id="goal-fat" required min="0">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width" id="btn-save-goals">Save Goals</button>
+                </form>
+            </div>
+        </dialog>
+
+        <!-- AI Image Preview Modal -->
+        <dialog id="ai-image-preview-modal" class="modal">
+            <div class="modal-content card">
+                <header class="modal-header">
+                    <h2 id="modal-confirm-img-title">Confirm Image</h2>
+                    <button id="close-ai-preview-modal" class="icon-btn"><i data-lucide="x"></i></button>
+                </header>
+                <div class="ai-preview-body">
+                    <div class="ai-preview-image-container">
+                        <img id="ai-pre-analysis-img" src="" alt="Selected Image">
+                    </div>
+                    <p class="preview-text" id="txt-confirm-analysis" style="text-align: center; margin: 1rem 0;">Would
+                        you like to analyze this
+                        meal?</p>
+                    <button id="ai-analyze-confirm-btn" class="btn btn-accent full-width">
+                        <i data-lucide="sparkles"></i> <span id="btn-analyze-confirm">Analyze Meal</span>
+                    </button>
+                </div>
+            </div>
+        </dialog>
+
+        <!-- AI Review Modal -->
+        <dialog id="ai-review-modal" class="modal large-modal">
+            <div class="modal-content card">
+                <header class="modal-header">
+                    <h2 id="modal-verify-ai-title">Verify AI Analysis</h2>
+                    <button id="close-ai-modal" class="icon-btn"><i data-lucide="x"></i></button>
+                </header>
+                <div class="ai-review-body">
+                    <div class="ai-preview-image-container" id="ai-preview-container" style="display:none;">
+                        <img id="ai-preview-img" src="" alt="Meal preview">
+                    </div>
+                    <div class="ai-results-container">
+                        <form id="ai-review-form">
+                            <div class="form-group">
+                                <label for="ai-meal-name" id="lbl-ai-meal-name">Recognized Meal</label>
+                                <input type="text" id="ai-meal-name" required>
+                            </div>
+
+                            <label id="lbl-ai-detected">Detected Items</label>
+                            <div class="ai-items-list" id="ai-items-list">
+                                <!-- AI detected items rows go here -->
+                            </div>
+
+                            <div class="ai-totals-summary editable-totals">
+                                <label id="lbl-ai-adjust">Adjust Estimated Totals</label>
+                                <div class="form-row macros-row" style="margin-top: 0.5rem;">
+                                    <div class="form-group">
+                                        <label for="ai-total-kcal" style="font-size: 0.75rem;">Calories</label>
+                                        <input type="number" id="ai-total-kcal" required min="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ai-total-protein" style="font-size: 0.75rem;">Protein</label>
+                                        <input type="number" id="ai-total-protein" required min="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ai-total-carbs" style="font-size: 0.75rem;">Carbs</label>
+                                        <input type="number" id="ai-total-carbs" required min="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ai-total-fat" style="font-size: 0.75rem;">Fat</label>
+                                        <input type="number" id="ai-total-fat" required min="0">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary full-width" id="btn-ai-confirm">Confirm &
+                                Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </dialog>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay" style="display: none;">
+            <div class="loader-content">
+                <div class="spinner"></div>
+                <p id="loading-text">AutoNutry is analyzing your meal...</p>
+            </div>
+        </div>
+
+    </div>
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
