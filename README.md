@@ -5,6 +5,7 @@
 
   **Uma plataforma de rastreamento nutricional premium impulsionada por Inteligência Artificial.**
 
+  [![Vercel Deploy](https://img.shields.io/badge/Vercel-Live_Demo-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://smart-auto-nutition-tracker.vercel.app/)
   [![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
   [![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
   [![Google Gemini AI](https://img.shields.io/badge/Gemini%202.5%20Flash-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/)
@@ -19,6 +20,8 @@
 ## 🇧🇷 Visão Geral 
 
 O **AutoNutry** é um aplicativo moderno de nutrição desenhado para simplificar o seu acompanhamento calórico diário. Em vez de buscar manualmente por alimentos em bancos de dados imensos, o aplicativo utiliza o poder do **Gemini 2.5 Flash** para analisar, reconhecer e estimar as calorias e macronutrientes (Proteínas, Carboidratos e Gorduras) diretamente a partir de fotos do seu prato ou de uma breve descrição em texto.
+
+✨ **[Testar Agora: Demonstração Ao Vivo (Vercel)](https://smart-auto-nutition-tracker.vercel.app/)** ✨
 
 Desenvolvido inteiramente no frontend (Single Page Application) com Javascript puro e Vite, focado em alta velocidade, responsividade e com uma identidade visual dark/light mode deslumbrante.
 
@@ -122,6 +125,8 @@ Sinta-se livre para entrar em contato ou dar um star ⭐ neste repositório caso
 ## 🇺🇸 English Version
 
 **AutoNutry** is a modern nutrition application designed to simplify your daily caloric tracking. Instead of manually searching for items in huge food databases, it harnesses the power of **Gemini 2.5 Flash** to analyze, recognize, and estimate calories and macronutrients directly from photos of your plate or natural language text descriptions.
+
+✨ **[Try it Out: Live Demonstration (Vercel)](https://smart-auto-nutition-tracker.vercel.app/)** ✨
 
 ### ✨ Key Features
 - **🤖 AI Nutrition Analysis:** Uses advanced vision and LLMs for seamless data entry.
